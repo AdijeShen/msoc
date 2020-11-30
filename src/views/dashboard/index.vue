@@ -2,7 +2,7 @@
 <div class="dashboard-container">
   <el-row :gutter="20">
     <el-col :span="2">
-      <div class="dashboard-text"> {{ $store.state.user.username }}</div>
+      <div class="dashboard-text"> {{ username }}</div>
     </el-col>
     <el-col :span="8">
       <el-button type="primary" @click="showcreatingDialog" v-if="isUser">创建计算任务</el-button>
@@ -11,12 +11,12 @@
   <br>
   <el-row :gutter="20">
     <div class="alert alert-success" role="alert" style="word-wrap:break-word">
-      公钥：<br>{{ $store.state.user.Pk_f }}
+      公钥：<br>{{ Pk_f }}
     </div>
   </el-row>
   <el-row :gutter="20">
     <div class="alert alert-danger" role="alert" style="word-wrap:break-word">
-      私钥：<br>{{ $store.state.user.Sk_f }}
+      私钥：<br>{{ Sk_f }}
     </div>
   </el-row>
   <creating-dialog ref="creating_dialog" />
@@ -33,7 +33,7 @@ import {
 import creatingDialog from "./creatingDialog"
 import cspstatic from './cspstatic'
 import serstatic from './serstatic'
-
+import Cookies from 'js-cookie'
 export default {
   name: 'Dashboard',
   mounted() {
@@ -48,20 +48,21 @@ export default {
       'name'
     ]),
     isUser() {
-      return this.$store.state.user.username != "CSP" && this.$store.state.user.username != "SER"
+      return this.username != "CSP" && this.username != "SER"
     },
     isCsp() {
-      return this.$store.state.user.username == 'CSP'
+      return this.username == 'CSP'
     },
     isSer() {
-      return this.$store.state.user.username == 'SER'
+      return this.username == 'SER'
     }
   },
   data() {
     return {
       dialogFormVisible: false,
-      pk: "",
-      sk: ""
+      Pk_f: Cookies.get("Pk_f"),
+      Sk_f: Cookies.get("Sk_f"),
+      username: Cookies.get("username")
     }
   },
   methods: {

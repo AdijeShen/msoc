@@ -2,7 +2,7 @@ import { login, logout, getInfo, newLogin, register, isValidUser } from '@/api/u
 import { addfunction, findAllFunctions, loadfunctiondetail, updatefunctionparams, getresult, getUserCipherText, getCResult, gettime, getcspciphertext, getfhetime, getsimpleresult, submitusage } from "@/api/functions"
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
-
+import Cookies from 'js-cookie'
 
 const getDefaultState = () => {
   return {
@@ -33,15 +33,19 @@ const mutations = {
   },
   SET_PK: (state, pk) => {
     state.Pk_f = pk
+    Cookies.set("Pk_f", pk)
   },
   SET_SK: (state, sk) => {
     state.Sk_f = sk
+    Cookies.set("Sk_f", sk)
   },
   SET_USERNAME: (state, username) => {
     state.username = username
+    Cookies.set("username", username)
   },
   SET_ID: (state, id) => {
     state.id = id
+    Cookies.set("id", id)
   }
 }
 
@@ -204,7 +208,7 @@ const actions = {
     let n = functionInfo.number
     n = n.toString()
     let n_a = functionInfo.a_number
-    let recUsername = state.username
+    let recUsername = Cookies.get("username")
     let who = functionInfo.inputusers
     for (let index = 0; index < who.length; index++) {
       who[index] = "\"" + who[index].toString() + "\""

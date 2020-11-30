@@ -25,11 +25,11 @@
 
     <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登陆</el-button>
 
-    <!--<div class="tips">-->
-      <!--<span style="margin-right:20px;">username: user/ser/csp</span>-->
-      <!--<span> password: any</span>-->
-      <!--<a style="float:right;" @click="toregister">注册</a>-->
-    <!--</div>-->
+    <div class="tips">
+      <span style="margin-right:20px;">username: user/ser/csp</span>
+      <span> password: 123</span>
+      <a style="float:right;" @click="toregister">注册</a>
+    </div>
 
   </el-form>
 </div>
