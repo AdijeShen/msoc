@@ -56,6 +56,7 @@ import {
   mapGetters
 } from "vuex";
 
+import Cookies from "js-cookie";
 export default {
   name: "Dashboard",
   mounted() {
@@ -65,7 +66,7 @@ export default {
     ...mapGetters(["name"]),
     isUser() {
       return (
-        this.$store.state.user.username != "CSP" &&
+        Cookies.get("username") != "CSP" &&
         this.$store.state.user.username != "SER"
       );
     },

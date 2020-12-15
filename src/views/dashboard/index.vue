@@ -37,7 +37,7 @@ import Cookies from 'js-cookie'
 export default {
   name: 'Dashboard',
   mounted() {
-    if (this.$store.state.user.username == "") {
+    if (Cookies.get("username") == null||Cookies.get("username")=="") {
       this.$router.replace({
         path: '/login?redirect=%2Fdashboard'
       })

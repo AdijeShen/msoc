@@ -30,12 +30,13 @@
       </el-dropdown>
     </div>
 
-      <span class="right-menu" >{{this.$store.state.user.username}}</span>
+      <span class="right-menu" >{{username}}</span>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Cookies from "js-cookie";
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -48,13 +49,17 @@ export default {
     ...mapGetters([
       'sidebar',
       'avatar'
-    ])
+    ]),
+    username(){
+      return Cookies.get("username");
+    }
   },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
+      Cookies.remove("username");
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
