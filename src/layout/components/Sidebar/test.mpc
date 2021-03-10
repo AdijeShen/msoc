@@ -1,0 +1,11 @@
+a = Array(10003, sint)
+b = Array(10003,sint)
+c = Array(10003,sint)
+
+for i in range(10000):
+    a[i] = sint(i)
+    b[i] = sint(10000-i)
+    
+for i in range(10000):
+    c[i] = a[i] * b[i]
+    print_ln('c is %s', c[i])
